@@ -15,15 +15,12 @@ class CreateListingsTable extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->nullable();
-            $table->bigInteger('pickup_address_id')->nullable();
-            $table->bigInteger('dropoff_address_id')->nullable();
-            $table->string('title');
-            $table->string('trailer_type');
-            $table->string('running');
-            $table->string('payment_type');
-            $table->string('available');
-            $table->string('vin');
+            $table->string('title')->nullable();
+            $table->string('trailer_type')->nullable();
+            $table->string('running')->nullable();
+            $table->string('payment_type')->nullable();
+            $table->string('available')->nullable();
+            $table->string('vin')->nullable();
             $table->timestamps();
         });
     }

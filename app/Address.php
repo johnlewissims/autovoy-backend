@@ -11,8 +11,13 @@ class Address extends Model
         'user_id', 'listing_id', 'street_number', 'street', 'city', 'state', 'country', 'postal_code', 'postal_code_suffix'
     ];
 
-    public function user()
+
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany('User');
+    }
+    public function listings()
+    {
+        return $this->belongsToMany('Listing');
     }
 }
