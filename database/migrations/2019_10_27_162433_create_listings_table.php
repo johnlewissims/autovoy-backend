@@ -16,8 +16,8 @@ class CreateListingsTable extends Migration
         Schema::create('listings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->nullable();
-            $table->bigInteger('pickup_address_id')->nullable();
-            $table->bigInteger('dropoff_address_id')->nullable();
+            $table->bigInteger('pickup_id')->nullable();
+            $table->bigInteger('dropoff_id')->nullable();
             $table->string('title')->nullable();
             $table->string('trailer_type')->nullable();
             $table->string('running')->nullable();
