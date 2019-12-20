@@ -34,16 +34,12 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-    public function pickupAddresses()
-    {
-        return $this->belongsToMany('App\Address', 'address_listing_user', 'pickup_address_id', 'user_id');
-    }
-    public function dropoffAddresses()
-    {
-        return $this->belongsToMany('App\Address', 'address_listing_user', 'dropoff_address_id', 'user_id');
-    }
     public function listings()
     {
-        return $this->belongsToMany('App\Listing', 'address_listing_user', 'listing_id', 'user_id');
+        return $this->hasMany('App\Listing');
+    }
+    public function addresses()
+    {
+        return $this->hasMany('App\Address');
     }
 }

@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Listing extends Model
 {
   protected $fillable = [
-      'user_id', 'pickup_address_id', 'dropoff_address_id', 'listing_id', 'title'
+      'user_id', 'pickup_id', 'dropoff_id', 'title'
   ];
-  public function pickupAddress()
+  public function user()
   {
-      return $this->belongsToMany('App\Address', 'address_listing_user', 'pickup_address_id', 'listing_id');
+      return $this->belongsTo('App\User');
   }
-  public function dropoffAddress()
+  public function pickup()
   {
-      return $this->belongsToMany('App\Address', 'address_listing_user', 'dropoff_address_id', 'listing_id');
+      return $this->belongsTo('App\Address', 'pickup_id');
   }
-  public function users()
+  public function dropoff()
   {
-      return $this->belongsToMany('App\User', 'address_listing_user', 'user_id', 'listing_id');
+      return $this->belongsTo('App\Address', 'dropoff_id');
   }
 }

@@ -9,8 +9,9 @@ Route::post('/logout', 'AuthController@logout');
 
 Route::group(['prefix' => 'listing'], function(){
   Route::post('/', 'ListingController@createListing');
-  Route::put('/pickupAddress/{listing}', 'ListingController@pickupAddress');
-  Route::put('/dropoffAddress/{listing}', 'ListingController@dropoffAddress');
+  Route::post('/pickup-address/{listing}', 'ListingController@pickupAddress');
+  Route::post('/dropoff-address/{listing}', 'ListingController@dropoffAddress');
+  Route::get('/{listing}', 'ListingController@getListing');
 });
 
 Route::group(['prefix' => 'address'], function(){
