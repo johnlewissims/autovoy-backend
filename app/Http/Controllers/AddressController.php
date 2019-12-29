@@ -12,6 +12,11 @@ class AddressController extends Controller
   public function createAddress(Request $request, Address $address){
     $newAddress = Address::create([
       'street' => $request->street,
+      'street_number' => $request->street_number,
+      'city' => $request->city,
+      'state' => $request->state,
+      'country' => $request->country,
+      'postal_code' => $request->postal_code,
     ]);
 
     //Associate With User
@@ -19,6 +24,6 @@ class AddressController extends Controller
     $newAddress->user()->associate($user->id);
     $newAddress->save();
 
-    return $address;
+    return $newAddress;
   }
 }

@@ -8,10 +8,10 @@ Route::post('/logout', 'AuthController@logout');
 Route::post('/logout', 'AuthController@logout');
 
 Route::group(['prefix' => 'listing'], function(){
-  Route::post('/', 'ListingController@createListing');
-  Route::post('/pickup-address/{listing}', 'ListingController@pickupAddress');
-  Route::post('/dropoff-address/{listing}', 'ListingController@dropoffAddress');
-  Route::get('/{listing}', 'ListingController@getListing');
+  Route::post('/', 'ListingController@createListing')->middleware('auth:api');
+  Route::post('/pickup-address/{listing}', 'ListingController@pickupAddress')->middleware('auth:api');
+  Route::post('/dropoff-address/{listing}', 'ListingController@dropoffAddress')->middleware('auth:api');;
+  Route::get('/{listing}', 'ListingController@getListing')->middleware('auth:api');;
 });
 
 Route::group(['prefix' => 'address'], function(){

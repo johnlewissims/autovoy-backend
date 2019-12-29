@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Listing extends Model
 {
   protected $fillable = [
-      'user_id', 'pickup_id', 'dropoff_id', 'title'
+      'user_id', 'pickup_id', 'dropoff_id', 'title', 'vin'
   ];
   public function user()
   {

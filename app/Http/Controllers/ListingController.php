@@ -12,6 +12,7 @@ class ListingController extends Controller
   public function createListing(Request $request, Listing $listing){
     $newListing = Listing::create([
       'title' => $request->title,
+      'vin' => $request->vin,
     ]);
 
     //Associate With User
@@ -38,7 +39,7 @@ class ListingController extends Controller
 
   //Get Listing
   public function getListing(Listing $listing){
-    $selectedListing = Listing::with('pickup', 'dropoff', 'user')->get();
+    $selectedListing = Listing::where('id', $listing->id)->with('pickup', 'dropoff', 'user')->get();
     return $selectedListing;
   }
 }
