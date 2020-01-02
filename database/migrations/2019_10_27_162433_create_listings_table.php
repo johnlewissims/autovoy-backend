@@ -21,8 +21,8 @@ class CreateListingsTable extends Migration
             $table->string('title')->nullable();
             $table->string('trailer_type')->nullable();
             $table->string('running')->nullable();
-            $table->string('payment_type')->nullable();
-            $table->string('available')->nullable();
+            $table->string('payment')->nullable();
+            $table->string('price')->nullable();
             $table->string('vin')->nullable();
             $table->timestamps();
         });

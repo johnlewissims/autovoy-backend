@@ -11,7 +11,8 @@ Route::group(['prefix' => 'listing'], function(){
   Route::post('/', 'ListingController@createListing')->middleware('auth:api');
   Route::post('/pickup-address/{listing}', 'ListingController@pickupAddress')->middleware('auth:api');
   Route::post('/dropoff-address/{listing}', 'ListingController@dropoffAddress')->middleware('auth:api');;
-  Route::get('/{listing}', 'ListingController@getListing')->middleware('auth:api');;
+  Route::get('/{listing}', 'ListingController@getListing')->middleware('auth:api');
+  Route::get('/', 'ListingController@getAllListings')->middleware('auth:api');
 });
 
 Route::group(['prefix' => 'address'], function(){

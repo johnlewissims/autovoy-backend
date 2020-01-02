@@ -11,6 +11,8 @@ class AddressController extends Controller
   //Create Address
   public function createAddress(Request $request, Address $address){
     $newAddress = Address::create([
+      'lng' => $request->lng,
+      'lat' => $request->lat,
       'street' => $request->street,
       'street_number' => $request->street_number,
       'city' => $request->city,
