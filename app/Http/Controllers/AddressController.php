@@ -28,4 +28,21 @@ class AddressController extends Controller
 
     return $newAddress;
   }
+
+  //Patch Address
+  public function patch(Request $request, Address $address){
+    $user = auth()->guard('api')->user();
+    if($user->id == $address->user_id) {
+      $address->lat = $request->get('lat', $address->lat);
+      $address->lng = $request->get('lng', $address->lng);
+      $address->street_number = $request->get('street_number', $address->street_number);
+      $address->street = $request->get('street', $address->street);
+      $address->city = $request->get('city', $address->city);
+      $address->state = $request->get('state', $address->state);
+      $address->country = $request->get('country', $address->country);
+      $address->postal_code = $request->get('postal_code', $address->postal_code);
+      $address->save();
+      return $address;
+    }
+  }
 }
