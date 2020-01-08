@@ -2,10 +2,10 @@
 
 Route::post('/register', 'AuthController@register');
 Route::post('/login', 'AuthController@login');
-Route::get('/user', 'AuthController@user');
+Route::get('/user', 'AuthController@user')->middleware('auth:api');
 Route::post('/logout', 'AuthController@logout');
 
-Route::post('/logout', 'AuthController@logout');
+Route::post('/forgot/password', 'ForgotPasswordController@forgot');
 
 Route::group(['prefix' => 'listing'], function(){
   Route::post('/', 'ListingController@createListing')->middleware('auth:api');

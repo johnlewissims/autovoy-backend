@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 use App\User;
 use App\Http\Resources\User as UserResource;
 use App\Http\Requests\UserRegisterRequest;
@@ -51,4 +53,6 @@ class AuthController extends Controller
     public function logout(Request $request){
       auth()->logout();
     }
+
+
 }
