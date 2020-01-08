@@ -20,7 +20,6 @@ class GeneralTableSeeder extends Seeder
 
       DB::table('addresses')->insert([
           'user_id' => 1,
-          'street_number' => '1234 Street St.',
       ]);
 
       DB::table('listings')->insert([

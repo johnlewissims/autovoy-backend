@@ -13,8 +13,7 @@ class AddressController extends Controller
     $newAddress = Address::create([
       'lng' => $request->lng,
       'lat' => $request->lat,
-      'street' => $request->street,
-      'street_number' => $request->street_number,
+      'street_address' => $request->street_address,
       'city' => $request->city,
       'state' => $request->state,
       'country' => $request->country,
@@ -35,8 +34,7 @@ class AddressController extends Controller
     if($user->id == $address->user_id) {
       $address->lat = $request->get('lat', $address->lat);
       $address->lng = $request->get('lng', $address->lng);
-      $address->street_number = $request->get('street_number', $address->street_number);
-      $address->street = $request->get('street', $address->street);
+      $address->street_address = $request->get('street_address', $address->street_address);
       $address->city = $request->get('city', $address->city);
       $address->state = $request->get('state', $address->state);
       $address->country = $request->get('country', $address->country);
