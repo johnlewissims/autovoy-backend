@@ -23,4 +23,5 @@ Route::group(['prefix' => 'address'], function(){
 });
 //Route::get('/', 'VideoController@index')->middleware('auth:api');
 
+
 ?>
