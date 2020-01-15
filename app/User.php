@@ -14,7 +14,7 @@ class User extends Authenticatable implements JWTSubject
     use Notifiable;
 
     protected $fillable = [
-        'last_name', 'first_name', 'email', 'password',
+        'last_name', 'first_name', 'email', 'password', 'phone_number'
     ];
 
     protected $hidden = [
@@ -24,6 +24,8 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = [ 'phone_number' ];
 
     public function getJWTIdentifier()
     {
@@ -41,5 +43,11 @@ class User extends Authenticatable implements JWTSubject
     public function addresses()
     {
         return $this->hasMany('App\Address');
+    }
+    //Add Phone Number
+    public function getPhoneNumberAttribute()
+    {
+        $data = $this->attributes['phone_number'];
+        return "(".substr($data, 0, 3).") ".substr($data, 3, 3)."-".substr($data,6);
     }
 }
