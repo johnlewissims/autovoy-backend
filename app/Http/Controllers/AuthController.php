@@ -60,7 +60,9 @@ class AuthController extends Controller
       $user->first_name = $request->get('first_name', $user->first_name);
       $user->last_name = $request->get('last_name', $user->last_name);
       $user->email = $request->get('email', $user->email);
-      $user->phone_number = $request->get('phone_number', $user->phone_number);
+      $cleanedNumber = preg_replace("/[^a-zA-Z0-9]/", "", $request->phone_number);
+
+      $user->phone_number = $cleanedNumber;
       $user->save();
       return $user;
     }
