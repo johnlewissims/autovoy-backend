@@ -3,6 +3,7 @@
 Route::post('/register', 'AuthController@register');
 Route::post('/login', 'AuthController@login');
 Route::get('/user', 'AuthController@user')->middleware('auth:api');
+Route::post('/user/update', 'AuthController@userUpdate')->middleware('auth:api');
 Route::post('/logout', 'AuthController@logout');
 
 Route::post('/forgot/password', 'ForgotPasswordController@forgot');

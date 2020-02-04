@@ -55,5 +55,17 @@ class AuthController extends Controller
       auth()->logout();
     }
 
+    public function userUpdate(Request $request){
+      $user = auth()->guard('api')->user();
+      $user->first_name = $request->get('first_name', $user->first_name);
+      $user->last_name = $request->get('last_name', $user->last_name);
+      $user->email = $request->get('email', $user->email);
+      $user->phone_number = $request->get('phone_number', $user->phone_number);
+      $user->save();
+      return $user;
+    }
+
+
+
 
 }
