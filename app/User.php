@@ -5,12 +5,14 @@ namespace App;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Cashier\Billable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Address;
 use App\Listing;
 
 class User extends Authenticatable implements JWTSubject
 {
+    use Billable;
     use Notifiable;
 
     protected $fillable = [

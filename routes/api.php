@@ -24,5 +24,11 @@ Route::group(['prefix' => 'address'], function(){
 });
 //Route::get('/', 'VideoController@index')->middleware('auth:api');
 
+Route::group(['prefix' => 'subscribe'], function(){
+  Route::get('/intent', 'SubscribeController@intent')->middleware('auth:api');
+  Route::get('/payment-methods', 'SubscribeController@getPaymentMethods');
+  Route::post('/', 'SubscribeController@createSubscription')->middleware('auth:api');
+});
+
 
 ?>
