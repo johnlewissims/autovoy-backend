@@ -17,6 +17,8 @@ class AuthController extends Controller
         'phone_number' => $request->phone_number,
         'first_name' => $request->first_name,
         'last_name' => $request->last_name,
+        'update_settings' => $request->update_settings,
+        'zip' => $request->zip,
         'password' => bcrypt($request->password),
       ]);
 
@@ -48,6 +50,9 @@ class AuthController extends Controller
     }
 
     public function user(Request $request){
+      // return (new UserResource($request->user()))->additional([
+      //   'test' => 'A Test',
+      // ]);
       return new UserResource($request->user());
     }
 

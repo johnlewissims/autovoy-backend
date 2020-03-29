@@ -44,7 +44,60 @@ class SubscribeController extends Controller
             ] );
         }
     }
-
     return response()->json( $methods );
+  }
+
+  public function removePaymentMethod( Request $request ){
+    $user = auth()->guard('api')->user();
+    $paymentMethodID = $request->get('id');
+
+    $paymentMethods = $user->paymentMethods();
+
+    foreach( $paymentMethods as $method ){
+      if( $method->id == $paymentMethodID ){
+        $method->delete();
+        break;
+      }
+    }
+
+    return response()->json( null, 204 );
+  }
+
+  public function updateSubscription( Request $request ){
+    $user = auth()->guard('api')->user();
+    $planID = $request->get('plan');
+    $paymentID = $request->get('payment');
+
+    if( !$user->subscribed() ){
+        $user->newSubscription( 'Subscription', $planID )
+                ->create( $paymentID );
+    } else {
+        $user->subscription('Subscription')->swap( $planID );
+    }
+
+    return response()->json([
+        'subscription_updated' => true
+    ]);
+  }
+
+  public function cancelSubscription( Request $request ){
+    $user = auth()->guard('api')->user();
+    $user->subscription('Subscription')->cancel();
+
+    return response()->json([
+        'subscription_canceled' => true
+    ]);
+  }
+
+  public function getCurrentSubscription( Request $request ){
+    $user = auth()->guard('api')->user();
+    $subscriptionStatus = [];
+    if($user->asStripeCustomer()["subscriptions"]["data"]) {
+      $nextBilling = ["renewal_date" => \Carbon\Carbon::createFromTimeStamp($user->asStripeCustomer()["subscriptions"]->data[0]["current_period_end"])->toFormattedDateString()];
+      $canceled = ["canceled" => $user->asStripeCustomer()["subscriptions"]->data[0]["cancel_at_period_end"]];
+      array_push($subscriptionStatus, $user->asStripeCustomer()["subscriptions"]->data[0]['plan'], $nextBilling, $canceled);
+    }
+
+    return $subscriptionStatus;
   }
 }

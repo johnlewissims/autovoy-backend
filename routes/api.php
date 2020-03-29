@@ -26,8 +26,12 @@ Route::group(['prefix' => 'address'], function(){
 
 Route::group(['prefix' => 'subscribe'], function(){
   Route::get('/intent', 'SubscribeController@intent')->middleware('auth:api');
-  Route::get('/payment-methods', 'SubscribeController@getPaymentMethods');
+  Route::get('/payment-methods', 'SubscribeController@getPaymentMethods')->middleware('auth:api');
+  Route::get('/current-subscription', 'SubscribeController@getCurrentSubscription')->middleware('auth:api');
   Route::post('/', 'SubscribeController@createSubscription')->middleware('auth:api');
+  Route::post('/remove', 'SubscribeController@removePaymentMethod')->middleware('auth:api');
+  Route::post('/subscription', 'SubscribeController@updateSubscription')->middleware('auth:api');
+  Route::post('/cancel', 'SubscribeController@cancelSubscription')->middleware('auth:api');
 });
 
 
