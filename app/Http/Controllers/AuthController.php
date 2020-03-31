@@ -11,7 +11,7 @@ use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserLoginRequest;
 class AuthController extends Controller
 {
-    public function register(UserRegisterRequest $request) {
+    public function register(Request $request) {
       $user = User::create([
         'email' => $request->email,
         'phone_number' => $request->phone_number,
