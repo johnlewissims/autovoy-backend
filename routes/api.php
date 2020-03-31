@@ -5,7 +5,6 @@ Route::post('/login', 'AuthController@login');
 Route::get('/user', 'AuthController@user')->middleware('auth:api');
 Route::post('/user/update', 'AuthController@userUpdate')->middleware('auth:api');
 Route::post('/logout', 'AuthController@logout');
-
 Route::post('/forgot/password', 'ForgotPasswordController@forgot');
 
 Route::group(['prefix' => 'listing'], function(){
@@ -15,6 +14,7 @@ Route::group(['prefix' => 'listing'], function(){
   Route::get('/{listing}', 'ListingController@getListing')->middleware('auth:api');
   Route::get('/', 'ListingController@getAllListings')->middleware('auth:api');
   Route::post('/update/{listing}', 'ListingController@patch');
+  Route::post('/toggle/{listing}', 'ListingController@toggleListing');
 });
 Route::get('/my-listings', 'ListingController@myListings');
 

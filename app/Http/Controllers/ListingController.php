@@ -73,4 +73,18 @@ class ListingController extends Controller
       return $listing;
     }
   }
+
+  //Hide or Show Listing
+  public function toggleListing(Request $request, Listing $listing){
+    $user = auth()->guard('api')->user();
+    if($user->id == $listing->user_id) {
+      if($listing->hidden == 1) {
+        $listing->hidden = 0;
+      } else {
+        $listing->hidden = 1;
+      }
+      $listing->save();
+      return $listing;
+    }
+  }
 }
