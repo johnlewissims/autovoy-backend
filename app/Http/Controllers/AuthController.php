@@ -20,6 +20,7 @@ class AuthController extends Controller
         'update_settings' => $request->update_settings,
         'zip' => $request->zip,
         'referral' => $request->referral,
+        'user_type' => $request->user_type,
         'password' => bcrypt($request->password),
       ]);
 

@@ -24,6 +24,7 @@ class CreateListingsTable extends Migration
             $table->string('payment')->nullable();
             $table->string('price')->nullable();
             $table->string('vin')->nullable();
+            $table->bigInteger('hidden')->nullable();
             $table->timestamps();
         });
     }
