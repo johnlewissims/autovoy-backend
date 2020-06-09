@@ -74,6 +74,18 @@ class AuthController extends Controller
       return $user;
     }
 
+    //Get All Users for Admin Panel
+    public function usersList(Request $request){
+      $user = auth()->guard('api')->user();
+      $adminIds = array(1, 2, 3, 8, 30);
+      if(in_array($user->id, $adminIds)) {
+        $users = User::select('first_name','last_name', 'email', 'phone_number', 'zip', 'referral', 'created_at')->orderBy('id', 'DESC')->get();
+        return $users;
+      } else {
+        return response()->json('Forbidden', 403);
+      }
+    }
+
 
 
 

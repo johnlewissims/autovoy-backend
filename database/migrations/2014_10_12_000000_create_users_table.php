@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('update_settings');
             $table->string('zip');
             $table->string('referral');
+            $table->string('user_type');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
